@@ -16,11 +16,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-
-        // FASE 4: ABI Filter Configuration for Ultra-Small Binary (< 3MB)
-        ndk {
-            abiFilters += listOf("arm64-v8a", "armeabi-v7a")
-        }
     }
 
     // FASE 4: Split Per-ABI Configuration
