@@ -25,7 +25,7 @@ import kotlin.random.Random
 @Composable
 fun HardwareWindowControllerEffect(
     keepScreenOn: Boolean,
-    screenBrightness: Float
+    screenBrightness: Float = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
 ) {
     val context = LocalContext.current
 
@@ -41,10 +41,11 @@ fun HardwareWindowControllerEffect(
         }
     }
 
-    LaunchedEffect(screenBrightness) {
+    // Memastikan aplikasi tidak mengunci kecerahan layar (mengikuti preferensi/auto-brightness sistem)
+    LaunchedEffect(Unit) {
         val window = (context as? Activity)?.window ?: return@LaunchedEffect
         val params = window.attributes
-        params.screenBrightness = screenBrightness.coerceIn(0.01f, 1.0f)
+        params.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
         window.attributes = params
     }
 }

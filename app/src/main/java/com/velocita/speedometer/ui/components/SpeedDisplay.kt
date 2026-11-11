@@ -243,23 +243,6 @@ fun SpeedDisplay(
                     )
                 }
             }
-
-            // FASE 3 (3.7): Right-edge touch strip for single-finger vertical brightness control
-            Box(
-                modifier = Modifier
-                    .align(Alignment.CenterEnd)
-                    .fillMaxHeight()
-                    .width(56.dp)
-                    .pointerInput(Unit) {
-                        detectVerticalDragGestures { change, dragAmount ->
-                            change.consume()
-                            val heightPx = size.height.toFloat().coerceAtLeast(1f)
-                            // Dragging up (negative dragAmount) increases brightness
-                            val deltaNormalized = (-dragAmount / heightPx) * 1.2f
-                            onBrightnessDragDelta(deltaNormalized)
-                        }
-                    }
-            )
         }
     }
 }

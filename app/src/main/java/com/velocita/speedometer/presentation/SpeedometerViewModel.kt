@@ -77,15 +77,9 @@ class SpeedometerViewModel(
         viewModelScope.launch {
             batterySaverMonitor.observeBatteryState().collect { battery ->
                 _uiState.update { current ->
-                    val enforcedBrightness = if (battery.isLowBatterySaverActive) {
-                        BatterySaverMonitor.BATTERY_SAVER_BRIGHTNESS
-                    } else {
-                        current.screenBrightness
-                    }
                     current.copy(
                         batteryPercentage = battery.batteryPct,
-                        isBatterySaverTriggered = battery.isLowBatterySaverActive,
-                        screenBrightness = enforcedBrightness
+                        isBatterySaverTriggered = battery.isLowBatterySaverActive
                     )
                 }
             }
@@ -228,10 +222,7 @@ class SpeedometerViewModel(
     }
 
     fun adjustBrightnessByDelta(deltaNormalized: Float) {
-        _uiState.update { current ->
-            val nextBrightness = (current.screenBrightness + deltaNormalized).coerceIn(0.01f, 1.0f)
-            current.copy(screenBrightness = nextBrightness)
-        }
+        // No-op: kecerahan layar dibebaskan mengikuti preferensi & sensor auto-brightness sistem
     }
 
     fun resetSessionMetrics() {

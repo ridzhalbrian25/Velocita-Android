@@ -29,7 +29,7 @@ data class SpeedometerUiState(
     val isWeakSignal: Boolean = false,
     val isHudMirrored: Boolean = false,
     val keepScreenOn: Boolean = true,
-    val screenBrightness: Float = 0.85f,
+    val screenBrightness: Float = -1.0f, // Mengikuti sistem (tidak mengunci kecerahan)
     val isBatterySaverTriggered: Boolean = false,
     val batteryPercentage: Int = 100,
     val sessionMetrics: SessionMetrics = SessionMetrics(
