@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        NFR 6.1 Least-Privilege Android Permissions:
+        1. ONLY ACCESS_FINE_LOCATION is requested for hardware GPS chipset access.
+        2. NO INTERNET permission is declared — guarantees 100% offline privacy.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="true" />
+
+    <application
+        android:name=".VelocitaApp"
+        android:allowBackup="false"
+        android:hasFragileUserData="false"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Velocita.ZeroColdStart"
+        tools:targetApi="34">
+
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- FASE 4: Quick Settings Tile Service for <1s Fast Launch -->
+        <service
+            android:name=".service.SpeedometerTileService"
+            android:exported="true"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:label="@string/tile_label"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>

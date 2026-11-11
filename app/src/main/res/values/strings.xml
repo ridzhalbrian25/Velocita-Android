@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Velocita</string>
+    <string name="tile_label">Velocita HUD</string>
+    <string name="gps_disabled_banner">GPS Perangkat Nonaktif</string>
+    <string name="gps_enable_action">Aktifkan</string>
+    <string name="permission_title">Izin Sensor GPS Diperlukan</string>
+    <string name="permission_rationale">Velocita membutuhkan akses ke sensor hardware GPS (ACCESS_FINE_LOCATION) untuk menghitung kecepatan secara 100% offline tanpa koneksi internet.</string>
+    <string name="permission_grant_button">Berikan Izin GPS</string>
+</resources>
